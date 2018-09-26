@@ -1,14 +1,16 @@
 package hu.firstapp;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class App {
 
-	private final int[] x;		
+	private final List<Integer> list;		
 	
 	public App() {
-		x = init(100, 100);
+		list = init(100, 100);
 	}
 
 	public static void main(String[] args) {
@@ -29,33 +31,30 @@ public class App {
 		denominator = 37;
 		System.out.println("A sorozat " + find(denominator)+ ". eleme osztható " + denominator + "-el");
 		System.out.println("A sorozatban " + count(denominator) + " db " + denominator + " -al osztható szám van!");
-		System.out.println("A sorozat " + max() + ". eleme a legnagyobb, értéke " + x[max()]);
+		System.out.println("A sorozat " + max() + ". eleme a legnagyobb, értéke " + list.get(max()));
 		System.out.println(this);
 		System.out.println("Egyszerõ kiválasztásos rendezéssel:");
-		System.out.println(printNums(simplesort(x)));
-		System.out.println(this);
-		System.out.println(printNums(bubblesort()));
 	}
 	
 	private int sequenceAdd() {
 		int s = 0;
-		for (int i = 0; i < x.length; i++) {
-			s = s + x[i];
+		for (int i = 0; i < list.size(); i++) {
+			s += list.get(i);
 		}
 		return s;
 	}
 	
 	private boolean condition(final int denominator) {
 		int i = 0;
-		while (i < x.length && x[i] % denominator != 0) {
+		while (i < list.size() && list.get(i) % denominator != 0) {
 			i = i + 1;
 		}
-		return i < x.length;
+		return i < list.size();
 	}
 	
 	private int select(final int denominator) {
 		int i = 0;
-		while (x[i] % denominator != 0) {
+		while (list.get(i) % denominator != 0) {
 			i = i + 1;
 		}
 		return i;
@@ -63,16 +62,16 @@ public class App {
 	
 	private int find(final int denominator) {
 		int i = 0;
-		while (i < x.length && x[i] % denominator != 0) {
+		while (i < list.size() && list.get(i) % denominator != 0) {
 			i = i + 1;
 		}
-		return i < x.length ? i : -1;
+		return i < list.size() ? i : -1;
 	}
 	
 	private int count(final int denominator) {
 		int db = 0;
-		for (int i = 0; i < x.length; i++) {
-			if (x[i] % denominator == 0) {
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i) % denominator == 0) {
 				db = db + 1;
 			}
 		}
@@ -81,8 +80,8 @@ public class App {
 	
 	private int max() {
 		int max = 0;
-		for (int i = 1; i < x.length; i++) {
-			if (x[i] > x[max]) {
+		for (int i = 1; i < list.size(); i++) {
+			if (list.get(i) > list.get(i)) {
 				max = i;
 			}
 			
@@ -90,53 +89,18 @@ public class App {
 		return max;
 	}
 	
-	private int[] simplesort(final int[] x) {
-		int[] nums = x.clone();
-		for (int i = 0; i < nums.length -1; i++) {
-			for (int j = i + 1; j < nums.length; j++) {
-				if (nums[i] > nums[j]) {
-					int p = nums[i];
-					nums[i] = nums[j];
-					nums[j] = p;
-				}
-				
-			}
-		}
-		return nums;
-	}
-	
-	private int[] bubblesort() {
-		int[] nums = x.clone();
-		for (int i = nums.length -1; i > 0; i--) {
-			for (int j = 0; j <= i - 1; j++) {
-				if (nums[j] > nums[j + 1]) {
-					int p = nums[j];
-					nums[j] = nums[j + 1];
-					nums[j + 1] = p;
-				}
-				
-			}
-		}
-		return nums;
-	}
-	
-	public String printNums(final int[] x) {
-		return "App [x=" + Arrays.toString(x) + "]";
-	}
-
-	private int[] init(int size, int bound) {
+	private List<Integer> init(int size, int bound) {
 		Random random = new Random();
-		int[] nums = new int[size];
-		for (int i = 0; i < nums.length; i++) {
-			nums[i] = random.nextInt(bound - 1) +1;
+		List<Integer> nums = new ArrayList<>();
+		for (int i = 0; i < size; i++) {
+			nums.add(random.nextInt(bound - 1) +1);
 		}
 		return nums;
 	}
 
 	@Override
 	public String toString() {
-		return "App [x=" + Arrays.toString(x) + "]";
+		return "App [x=" + list + "]";
 	}
-	
-	
+
 }
