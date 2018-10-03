@@ -23,21 +23,23 @@ public class App {
 
 	private void run() {
 		System.out.println(this);
-		System.out.println("A sorozat Ã¶sszege: " + facade.getSequenceAdd());
+		System.out.println("A sorozat összege: " + facade.getSequenceAdd());
 		int denominator = 4;
 		if (facade.getCondition(denominator)) {
-			System.out.println("A sorozatban van " + denominator + "-al oszthatÃ³ szám");
-			System.out.println("A sorozat " + facade.getSelected(denominator) + ". eleme az!");
+			System.out.println("A sorozatban van " + denominator + "-al osztható szám");
+			System.out.println("A sorozat " + facade.getSelected(denominator) + " értékû eleme osztható " + denominator + "-val");
 
 		} else {
-			System.out.println("A sorozatban nincs " + denominator + "-al oszthatÃ³ szÃ¡m");
+			System.out.println("A sorozatban nincs " + denominator + "-al osztható szám");
 		}
 		denominator = 37;
 		System.out.println("A sorozat " + facade.getFound(denominator) + ". eleme oszthatÃ³ " + denominator + "-al.");
-		System.out.println("A sorozatban " + facade.getCount(denominator) + " db " + denominator + "-al oszthatÃ³ szÃ¡m van!") ;
-		System.out.println("A sorozat " + facade.getMax() + ". eleme a legnagyobb, Ã©rtÃ©ke " + list.get(facade.getMax()));
+		System.out.println("A sorozatban " + facade.getCount(denominator) + " db " + denominator + "-al osztható szám van!") ;
+		System.out.println("A sorozat legnagyobb értékû eleme a(z) " + facade.getMax());
 		System.out.println(this);
-		System.out.println("EgyszerÅ± kivÃ¡lasztÃ¡sos rendezÃ©ssel:");
+		System.out.println("Rendezve:");
+		list.sort(null);
+		System.out.println(this);
 	}
 
 	
